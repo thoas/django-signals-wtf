@@ -22,3 +22,5 @@ class AnswerManager(models.Manager):
 class Answer(models.Model):
     text = models.CharField(max_length=255)
     poll = models.ForeignKey(Poll, related_name='answers')
+
+    objects = AnswerManager()
