@@ -19,8 +19,16 @@ class AnswerManager(models.Manager):
         poll.save(update_fields=('answers_count', ))
 
 
-class Answer(models.Model):
+class AbstractAnswer(models.Model):
     text = models.CharField(max_length=255)
     poll = models.ForeignKey(Poll, related_name='answers')
 
     objects = AnswerManager()
+
+    class Meta:
+        abstract = True
+
+
+class Answer(AbstractAnswer):
+    class Meta:
+        abstract = False
